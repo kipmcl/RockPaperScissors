@@ -1,61 +1,77 @@
- var getUserChoice = function (userInput = 'rock') {
+ var getUserChoice = function (userInput) {
 
-    userInput = userInput.toLowerCase();
-    if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors') {
-        console.log(userInput);
-        return userInput;
-    } else if (userInput != 'rock' || userInput != 'paper' || userInput != 'scissors') {
-        console.log('Please choose rock, paper, or scissors');
-    } return userInput;
-       };
-       
-  getUserChoice();
+  userInput = userInput.toLowerCase();
   
+  
+  if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors') {
+      return userInput;
+  } else { 
+      console.log('Please enter rock, paper, or scissors');
+  }
 
-   var getComputerChoice = function () {
-    computerInput = Math.floor(Math.random() * 3);
-    if (computerInput === 0) {
-          console.log('rock');
-    } else if (computerInput === 1) {
-         console.log('paper');
-    } else if (computerInput === 2) {
-         console.log('scissors');
-    }
-    };
+};
+     
+//   getUserChoice('rock');
+//   var choice = getUserChoice('rock');
+//   console.log(choice);
 
-  getComputerChoice();
+
+ var getComputerChoice = function () {
+  var randomNumber = Math.floor(Math.random() * 3);
+
+  if (randomNumber === 0) {
+         return 'rock';
+  } else if (randomNumber === 1) {
+        return 'paper';
+  } else if (randomNumber === 2) {
+        return 'scissors';
+  }
+};
 
 var determineWinner = function (userChoice, computerChoice) {
-   
-    if (userChoice === 'rock' && computerChoice === 0) {
-        console.log('The Game Is A Tie!');
-    } else if (userChoice === 'rock' && computerChoice === 1) {
-        console.log('The Computer Won!');
-    } else if (userChoice === 'rock' && computerChoice === 2) {
-        console.log('The Human Wins!');
-    } else if (userChoice === 'paper' && computerChoice === 2) {
-        console.log('The Computer Won');
-    } else if (userChoice === 'paper' && computerChoice === 0) {
-        console.log('The Human Wins!');
-    } else if (userChoice === 'scissors' && computerChoice === 0) {
-        console.log('The Computer Won');
-    } else if (userChoice === 'scissors' && computerChoice === 2) {
-        console.log('The Human Wins!');
-    } 
+  if (userChoice === computerChoice) {
+      return 'Game was a tie'
+  }
+  if (userChoice === 'rock') {
+      if (computerChoice === 'paper') {
+      return 'The Computer Won!';
+      }
+      if (computerChoice === 'scissors') {
+          return 'The User Won!';
+      }
+  } 
 
+  if (userChoice === 'paper') {
+      if (computerChoice === 'scissors') {
+          return 'The Computer Won!';
+      }
+      if (computerChoice === 'rock') {
+          return 'The User Wins!';
+      }
+  }
+
+  if (userChoice === 'scissors') {
+      if (computerChoice === 'rock') {
+          return 'The Computer Won!';
+      }
+      if (computerChoice === 'paper') {
+          return 'The User Wins!';
+      }
+  } 
 };
-
-determineWinner('rock', computerInput);
 
 var playGame = function () {
-userChoice = getUserChoice('rock');
+  var userChoice = getUserChoice('scissors');
+  var computerChoice = getComputerChoice();
 
-computerChoice = getComputerChoice();
-
-//console.log(userChoice);
-//console.log(computerChoice);
+  console.log('User Choice', userChoice);
+  console.log('Computer Choice', computerChoice);
+  
+  var winnerText = determineWinner(userChoice, computerChoice);
+  console.log(winnerText);
 
 };
+
 
 playGame();
 
